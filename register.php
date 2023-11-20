@@ -11,6 +11,8 @@ if ($_POST['submit']) {
     $mail = $_POST['mail'];
     if (false and $_SESSION['yzm'] != @$_POST['verifyCode']) {
         echo "<script>alert(\"验证码有误\");</script>";
+    } else if (@$_POST['verifyCode'] != 'amfsb') {
+        echo "<script>alert(\"验证码有误\");</script>";
     } else {
         $reg = Register($user, $pwd, $mail);
         if ($reg != 1) {
@@ -72,6 +74,9 @@ if ($_POST['submit']) {
                                                                                                           onclick="javascript:refresh();"><img
                             src='./class/verifyCode.php' id="checkCodeImg" alt="点击图片更换验证码"/> </a>
             </div> -->
+            <div class="form-group">
+                <input type="txt" name="verifyCode" class="form-control" placeholder="验证码" required="">
+            </div> 
             <button type="submit" name="submit" value="注册" class="btn btn-primary block full-width m-b">注 册</button>
         </form>
     </div>
