@@ -51,7 +51,7 @@ $list = $query->fetchAll();
 
 <!-- Header -->
 <header id="header" class="alt">
-    <h1 id="logo"><a href="index.php">Rains</a></h1>
+    <h1 id="logo"><a href="index.php">Quotes</a></h1>
     <nav id="nav">
         <ul>
             <li class="current"><a href="index.php">Welcome</a></li>
