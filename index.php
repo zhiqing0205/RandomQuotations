@@ -91,7 +91,7 @@ $list = $query->fetchAll();
 
 </section>
 
-<!-- Main -->
+<!--
 <article id="main">
 
     <header class="special container">
@@ -100,7 +100,7 @@ $list = $query->fetchAll();
         <p>你可以调用系统为你提供的语句，并将其展示在你的网站上。<br/>你也可以定制属于自己语句，提交你的专属语句并调用。
         </p>
     </header>
-    <!-- CTA -->
+    
     <section id="cta">
 
         <header>
@@ -116,10 +116,11 @@ $list = $query->fetchAll();
 
     </section>
 
-    <!-- Footer -->
     <footer id="footer">
         <span class="copyright">Copyright &copy; 2016.<a target="_blank" href="http://rainss.cn/">&#38632;&#33853;&#20939;&#27527;</a> All rights reserved.</span>
 
     </footer>
+</article>
+-->
 </body>
 </html>
