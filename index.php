@@ -6,7 +6,7 @@ require('./class/register.class.php');
 $con = new Sql($db_host, $db_user, $db_pwd);
 $con->connect_mysql($db_database);
 $con->charset();
-$sql = "SELECT txt FROM `rains_sjyl` ORDER BY RAND() LIMIT 1";
+$sql = "SELECT txt FROM `rains_own` ORDER BY RAND() LIMIT 1";
 $query = $con->query($sql);
 $list = $query->fetchAll();
 ?>
@@ -74,7 +74,7 @@ $list = $query->fetchAll();
     <div class="inner">
 
         <header>
-            <h2>语录系统</h2>
+            <h2>AMF语录</h2>
         </header>
         <p><?php echo $list['0']['txt']; ?></p>
         <footer>
