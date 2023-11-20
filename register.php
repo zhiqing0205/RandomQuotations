@@ -9,7 +9,7 @@ if ($_POST['submit']) {
     $user = $_POST['user'];
     $pwd = $_POST['password'];
     $mail = $_POST['mail'];
-    if ($_SESSION['yzm'] != @$_POST['verifyCode']) {
+    if (false and $_SESSION['yzm'] != @$_POST['verifyCode']) {
         echo "<script>alert(\"验证码有误\");</script>";
     } else {
         $reg = Register($user, $pwd, $mail);
@@ -67,11 +67,11 @@ if ($_POST['submit']) {
             <div class="form-group">
                 <input type="email" name="mail" class="form-control" placeholder="邮箱" required="">
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <input type="txt" name="verifyCode" class="form-control" placeholder="验证码" required=""><a href="#"
                                                                                                           onclick="javascript:refresh();"><img
                             src='./class/verifyCode.php' id="checkCodeImg" alt="点击图片更换验证码"/> </a>
-            </div>
+            </div> -->
             <button type="submit" name="submit" value="注册" class="btn btn-primary block full-width m-b">注 册</button>
         </form>
     </div>
