@@ -16,15 +16,26 @@ require('./class/register.class.php');
     <script src="./resource/js/init.js"></script>
     <style>
         #banner {
-            background-attachment: scroll, scroll, scroll, fixed;
+            /* background-attachment: scroll, scroll, scroll, fixed;
             background-color: #645862;
-            /* background-image: url("./resource/css/images/light-bl.svg"), url("./resource/css/images/light-br.svg"), url("./resource/css/images/overlay.png"), url("./resource/img/banner-<?php echo rand(0,15);?>.jpg"); */
+            background-image: url("./resource/css/images/light-bl.svg"), url("./resource/css/images/light-br.svg"), url("./resource/css/images/overlay.png"), url("./resource/img/banner-<?php echo rand(0,15);?>.jpg");
             background-position: bottom left, bottom right, top left, top center;
             background-repeat: no-repeat, no-repeat, repeat, no-repeat;
             background-size: 25em, 25em, auto, cover;
             color: white;
             cursor: default;
             padding: 6em 0;
+            text-align: center; */
+            
+            width: 100%; /* 宽度设为 100% */
+            height: 100vh; /* 高度设为视口高度的 100% */
+            background-attachment: scroll, scroll, scroll, fixed;
+            background-color: #645862;
+            background-position: center; /* 背景图像居中 */
+            background-repeat: no-repeat, no-repeat, repeat, no-repeat;
+            background-size: cover; /* 背景图像覆盖整个元素 */
+            color: white;
+            cursor: default;
             text-align: center;
         }
 
