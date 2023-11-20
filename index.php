@@ -41,6 +41,8 @@ require('./class/register.class.php');
             display: flex; /* 设置为 Flex 容器 */
             justify-content: center; /* 水平居中 */
             align-items: center; /* 垂直居中 */
+
+            transition: all 0.6s;
         }
 
         #cta {
@@ -93,9 +95,6 @@ require('./class/register.class.php');
             var randomBgNumber = Math.floor(Math.random() * 16); // 假设有 16 张背景图
             var newBgImage = "./resource/img/banner-" + randomBgNumber + ".jpg";
             bannerElement.style.backgroundImage = 'url("./resource/css/images/light-bl.svg"), url("./resource/css/images/light-br.svg"), url("./resource/css/images/overlay.png"), url("' + newBgImage + '")';
-            bannerElement.classList.remove("fadeInElement"); // 移除类以重置动画
-            void bannerElement.offsetWidth; // 触发重绘
-            bannerElement.classList.add("fadeInElement"); // 重新添加类以开始动画
         }
 
         loadNewQuote();
