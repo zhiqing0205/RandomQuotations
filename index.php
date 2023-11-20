@@ -18,7 +18,7 @@ require('./class/register.class.php');
         #banner {
             background-attachment: scroll, scroll, scroll, fixed;
             background-color: #645862;
-            background-image: url("./resource/css/images/light-bl.svg"), url("./resource/css/images/light-br.svg"), url("./resource/css/images/overlay.png"), url("./resource/img/banner-<?php echo rand(0,15);?>.jpg");
+            /* background-image: url("./resource/css/images/light-bl.svg"), url("./resource/css/images/light-br.svg"), url("./resource/css/images/overlay.png"), url("./resource/img/banner-<?php echo rand(0,15);?>.jpg"); */
             background-position: bottom left, bottom right, top left, top center;
             background-repeat: no-repeat, no-repeat, repeat, no-repeat;
             background-size: 25em, 25em, auto, cover;
@@ -60,10 +60,23 @@ require('./class/register.class.php');
                     quoteElement.classList.remove("fadeInElement"); // 移除类以重置动画
                     void quoteElement.offsetWidth; // 触发重绘
                     quoteElement.classList.add("fadeInElement"); // 重新添加类以开始动画
+
+                    // 更新背景图
+                    updateBackgroundImage();
                 }
             };
             xhr.open("GET", "get_quote.php", true);
             xhr.send();
+        }
+
+        function updateBackgroundImage() {
+            var bannerElement = document.getElementById("banner"); 
+            var randomBgNumber = Math.floor(Math.random() * 16); // 假设有 16 张背景图
+            var newBgImage = "./resource/img/banner-" + randomBgNumber + ".jpg";
+            bannerElement.style.backgroundImage = 'url("./resource/css/images/light-bl.svg"), url("./resource/css/images/light-br.svg"), url("./resource/css/images/overlay.png"), url("' + newBgImage + '")';
+            bannerElement.classList.remove("fadeInElement"); // 移除类以重置动画
+            void bannerElement.offsetWidth; // 触发重绘
+            bannerElement.classList.add("fadeInElement"); // 重新添加类以开始动画
         }
 
         loadNewQuote();
