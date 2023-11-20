@@ -21,7 +21,8 @@ $list = $query->fetchAll();
     <script src="./resource/js/skel.min.js"></script>
     <script src="./resource/js/skel-layers.min.js"></script>
     <script src="./resource/js/init.js"></script>
-    <style>#banner {
+    <style>
+        #banner {
             background-attachment: scroll, scroll, scroll, fixed;
             background-color: #645862;
             background-image: url("./resource/css/images/light-bl.svg"), url("./resource/css/images/light-br.svg"), url("./resource/css/images/overlay.png"), url("./resource/img/banner-<?php echo rand(0,15);?>.jpg");
@@ -45,8 +46,35 @@ $list = $query->fetchAll();
             padding: 3em;
             text-align: center;
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .fadeInElement {
+            animation: fadeIn 1s ease-in;
+        }
     </style>
+    <script>
+        function loadNewQuote() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                console.log(this)
+                if (this.readyState == 4 && this.status == 200) {
+                    var quoteElement = document.getElementById("quote");
+                    quoteElement.innerHTML = this.responseText;
+                    quoteElement.classList.remove("fadeInElement"); // 移除类以重置动画
+                    void quoteElement.offsetWidth; // 触发重绘
+                    quoteElement.classList.add("fadeInElement"); // 重新添加类以开始动画
+                }
+            };
+            xhr.open("GET", "get_quote.php", true);
+            xhr.send();
+        }
+    </script>
 </head>
+
 <body class="index loading">
 
 <!-- Header -->
@@ -76,8 +104,8 @@ $list = $query->fetchAll();
         <header>
             <h2>AMF语录</h2>
         </header>
-        <p><?php echo $list['0']['txt']; ?></p>
-        <footer>
+        <p id="quote"><?php echo $list['0']['txt']; ?></p>
+        <!-- <footer>
             <ul class="buttons vertical">
                 <li><?php if (!isset($_COOKIE['rains_user'])) {
                         echo "<a href=\"register.php\" class=\"button fit scrolly\">立即加入</a>";
@@ -85,8 +113,14 @@ $list = $query->fetchAll();
                         echo "<a href=\"/user\" class=\"button fit scrolly\">用户中心</a>";
                     } ?></li>
             </ul>
+        </footer> -->
+        <footer>
+            <ul class="buttons vertical">
+                <li><?php 
+                        echo "<a class=\"button fit scrolly\" onclick=\"loadNewQuote()\">再来一条</a>";
+                    ?></li>
+            </ul>
         </footer>
-
     </div>
 
 </section>
