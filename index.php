@@ -1,14 +1,7 @@
 <?php
 require('./config.php');
 require('./admin/webconfig.php');
-require('./class/mysql_class.php');
 require('./class/register.class.php');
-$con = new Sql($db_host, $db_user, $db_pwd);
-$con->connect_mysql($db_database);
-$con->charset();
-$sql = "SELECT txt FROM `rains_own` ORDER BY RAND() LIMIT 1";
-$query = $con->query($sql);
-$list = $query->fetchAll();
 ?>
 <!DOCTYPE HTML>
 <head>
@@ -72,6 +65,8 @@ $list = $query->fetchAll();
             xhr.open("GET", "get_quote.php", true);
             xhr.send();
         }
+
+        loadNewQuote();
     </script>
 </head>
 
@@ -104,7 +99,7 @@ $list = $query->fetchAll();
         <header>
             <h2>AMF语录</h2>
         </header>
-        <p id="quote"><?php echo $list['0']['txt']; ?></p>
+        <p id="quote"></p>
         <!-- <footer>
             <ul class="buttons vertical">
                 <li><?php if (!isset($_COOKIE['rains_user'])) {
