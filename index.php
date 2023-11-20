@@ -53,7 +53,7 @@ require('./class/register.class.php');
         function loadNewQuote() {
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
-                console.log(this)
+                // console.log(this)
                 if (this.readyState == 4 && this.status == 200) {
                     var quoteElement = document.getElementById("quote");
                     quoteElement.innerHTML = this.responseText;
