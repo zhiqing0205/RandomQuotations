@@ -57,7 +57,7 @@ if ($_POST['submit']) {
             <h1 class="logo-name">语</h1>
 
         </div>
-        <h3>欢迎使用随机语录</h3>
+        <h3>欢迎使用AMF语录</h3>
 
         <form class="m-t" role="form" method="POST" action="register.php">
             <div class="form-group">
