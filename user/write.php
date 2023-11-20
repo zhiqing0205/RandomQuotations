@@ -55,15 +55,17 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">作者：</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="author" class="form-control" placeholder="输入的内容在15字以内"
-                                           data-form-un="1483112471400.764">
+                                    <!-- <input type="text" name="author" class="form-control" placeholder="输入的内容在15字以内"
+                                           data-form-un="1483112471400.764"> -->
+                                        <input type="text" name="author" class="form-control" placeholder="输入的内容在15字以内???"
+                                           data-form-un="1483112471400.764" value="AMF" disabled>
                                 </div>
                                 <br/>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="display: none">
                                 <label class="col-sm-3 control-label">分类：</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" name="type">
+                                    <select class="form-control" name="type" value="4">
                                         <option value="0">动漫语录</option>
                                         <option value="1">哲理语录</option>
                                         <option value="2">名人名言</option>
@@ -107,7 +109,7 @@
         $type = $_POST['type'];
         $userid = $list['0']['id'];
         $share = $_POST['share'];
-        if ($txt == true && $author == true) {
+        if ($txt == true) {
             if ($share == 0) {
                 $sharetime = '0000-00-00 00:00:00';
             } else {
