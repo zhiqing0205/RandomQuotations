@@ -37,6 +37,10 @@ require('./class/register.class.php');
             color: white;
             cursor: default;
             text-align: center;
+
+            display: flex; /* 设置为 Flex 容器 */
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
         }
 
         #cta {
@@ -49,6 +53,10 @@ require('./class/register.class.php');
             color: white;
             padding: 3em;
             text-align: center;
+        }
+
+        #quote {
+            font-size: 25px;
         }
 
         @keyframes fadeIn {
@@ -67,7 +75,7 @@ require('./class/register.class.php');
                 // console.log(this)
                 if (this.readyState == 4 && this.status == 200) {
                     var quoteElement = document.getElementById("quote");
-                    quoteElement.innerHTML = this.responseText;
+                    quoteElement.innerHTML = "“ " + this.responseText + " ”";
                     quoteElement.classList.remove("fadeInElement"); // 移除类以重置动画
                     void quoteElement.offsetWidth; // 触发重绘
                     quoteElement.classList.add("fadeInElement"); // 重新添加类以开始动画
