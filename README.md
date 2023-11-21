@@ -8,6 +8,7 @@ PHP+MYSQL随机语录
 # 程序首页截图
 
 ![语录系统首页截图](https://img.ziuch.top/i/2023/11/21/fdxthf-2.webp)
+![系统手机截图](https://img.ziuch.top/i/2023/11/21/fjv0hq-2.webp)
 
 # 使用说明
 
