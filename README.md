@@ -1,13 +1,13 @@
 # RandomQuotations
 
-PHP+MYSQL随机语录V2.0版本
+PHP+MYSQL随机语录
 
 # 简介
-本程序是[随机语录](https://github.com/rainerosion/sjyl)系统的升级版本，编码于2016年，主要使用手机+电脑编码，已经几年没有整理，代码格式比较乱。由于对功能的扩展与维护不便，暂时放弃该版本的升级与维护，后续可能使用框架开发新的版本。这是本人入门PHP时的练手之作，代码比较垃圾，需要的朋友可以自行下载使用。
+随机语录
 
 # 程序首页截图
 
-![语录系统首页截图](./screenshot/index.jpg)
+![语录系统首页截图](https://img.ziuch.top/i/2023/11/21/fdxthf-2.webp)
 
 # 使用说明
 
