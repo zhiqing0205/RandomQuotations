@@ -64,7 +64,7 @@ if ($_POST['submit']) {
             <h1 class="logo-name">语</h1>
 
         </div>
-        <h3>欢迎使用语录系统</h3>
+        <h3>欢迎使用AMF语录</h3>
 
         <form class="m-t" method="POST" role="form" action="login.php">
             <div class="form-group">
