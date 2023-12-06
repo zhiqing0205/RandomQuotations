@@ -1,6 +1,7 @@
 # RandomQuotations
 
 PHP+MYSQL随机语录
+演示地址：[https://amf.lol/](https://amf.lol/)
 
 # 简介
 随机语录
