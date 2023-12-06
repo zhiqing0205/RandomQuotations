@@ -91,10 +91,27 @@ require('./class/register.class.php');
         }
 
         function updateBackgroundImage() {
-            var bannerElement = document.getElementById("banner"); 
-            var randomBgNumber = Math.floor(Math.random() * 16); // 假设有 16 张背景图
-            var newBgImage = "./resource/img/banner-" + randomBgNumber + ".jpg";
-            bannerElement.style.backgroundImage = 'url("./resource/css/images/light-bl.svg"), url("./resource/css/images/light-br.svg"), url("./resource/css/images/overlay.png"), url("' + newBgImage + '")';
+            // var bannerElement = document.getElementById("banner"); 
+            // var randomBgNumber = Math.floor(Math.random() * 16); // 假设有 16 张背景图
+            // var newBgImage = "./resource/img/banner-" + randomBgNumber + ".jpg";
+            // bannerElement.style.backgroundImage = 'url("./resource/css/images/light-bl.svg"), url("./resource/css/images/light-br.svg"), url("./resource/css/images/overlay.png"), url("' + newBgImage + '")';
+            var xhr = new XMLHttpRequest();
+            var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+            var deviceType = screenWidth < 768 ? "mobile" : "pc"; // 假设768px为移动端和PC端的分界线
+
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var bannerElement = document.getElementById("banner");
+                    console.log(this.responseText)
+                    var newBgImage = this.responseText; // PHP 脚本返回的图片路径
+
+                    // 更新背景图
+                    bannerElement.style.backgroundImage = 'url("./resource/css/images/light-bl.svg"), url("./resource/css/images/light-br.svg"), url("./resource/css/images/overlay.png"), url("' + newBgImage + '")';
+                }
+            };
+            
+            xhr.open("GET", "getRandomBgImage.php?deviceType=" + deviceType, true);
+            xhr.send();
         }
 
         loadNewQuote();
