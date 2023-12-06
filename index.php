@@ -77,7 +77,14 @@ require('./class/register.class.php');
     </style>
     <script>
 
+        var is_loading = false
+
         function loadNewQuote() {
+            
+            if(is_loading) return;
+            var quoteButton = document.querySelector(".quoteButton"); // 获取按钮元素
+            quoteButton.innerHTML = "Loading..."
+
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -96,9 +103,11 @@ require('./class/register.class.php');
                         quoteElement.classList.remove("fadeInElement"); // 移除类以重置动画
                         void quoteElement.offsetWidth; // 触发重绘
                         quoteElement.classList.add("fadeInElement"); // 重新添加类以开始动画
-                    
+                        // 加载完成 去除loading
+                        quoteButton.innerHTML = "再来一条"
+                        is_loading = false
                     };
-                    img.src = newBgImageUrl; // 开始加载图片
+                    img.src = newBgImageUrl; // 开始加载图片                 
                 }
             };
 
@@ -108,7 +117,11 @@ require('./class/register.class.php');
             xhr.send();
         }
 
-        loadNewQuote();
+        // 防止元素未完全加载
+        setTimeout(() => {
+            loadNewQuote();
+        }, 50);
+        
     </script>
 </head>
 
@@ -154,7 +167,7 @@ require('./class/register.class.php');
         <footer>
             <ul class="buttons vertical">
                 <li><?php 
-                        echo "<a class=\"button fit scrolly\" onclick=\"loadNewQuote()\">再来一条</a>";
+                        echo "<a id=\"quoteButton\" class=\"button fit scrolly quoteButton loading\" onclick=\"loadNewQuote()\">再来一条</a>";
                     ?></li>
             </ul>
         </footer>
