@@ -70,43 +70,33 @@ require('./class/register.class.php');
         .fadeInElement {
             animation: fadeIn 1s ease-in;
         }
+
+        .inner {
+            background: rgba(0, 0, 0, 0.3) !important;
+        }
     </style>
     <script>
+
         function loadNewQuote() {
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
-                // console.log(this)
                 if (this.readyState == 4 && this.status == 200) {
-                    var quoteElement = document.getElementById("quote");
-                    quoteElement.innerHTML = "“ " + this.responseText + " ”";
-                    quoteElement.classList.remove("fadeInElement"); // 移除类以重置动画
-                    void quoteElement.offsetWidth; // 触发重绘
-                    quoteElement.classList.add("fadeInElement"); // 重新添加类以开始动画
-
-                    // 更新背景图
-                    updateBackgroundImage();
-                }
-            };
-            xhr.open("GET", "get_quote.php", true);
-            xhr.send();
-        }
-
-        function updateBackgroundImage() {
-            // var bannerElement = document.getElementById("banner"); 
-            // var randomBgNumber = Math.floor(Math.random() * 16); // 假设有 16 张背景图
-            // var newBgImage = "./resource/img/banner-" + randomBgNumber + ".jpg";
-            // bannerElement.style.backgroundImage = 'url("./resource/css/images/light-bl.svg"), url("./resource/css/images/light-br.svg"), url("./resource/css/images/overlay.png"), url("' + newBgImage + '")';
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var newBgImageUrl = this.responseText; // PHP 脚本返回的图片路径
-
+                    var response = JSON.parse(this.responseText);
+                    var newQuote = response.quote;
+                    var newBgImageUrl = response.backgroundImage;
                     // 预加载新的背景图
                     var img = new Image();
                     img.onload = function() {
                         // 当图片完全加载后更新背景
                         var bannerElement = document.getElementById("banner");
                         bannerElement.style.backgroundImage = 'url("./resource/css/images/light-bl.svg"), url("./resource/css/images/light-br.svg"), url("./resource/css/images/overlay.png"), url("' + newBgImageUrl + '")';
+                        // 更新语录
+                        var quoteElement = document.getElementById("quote");
+                        quoteElement.innerHTML = "“ " + newQuote + " ”";
+                        quoteElement.classList.remove("fadeInElement"); // 移除类以重置动画
+                        void quoteElement.offsetWidth; // 触发重绘
+                        quoteElement.classList.add("fadeInElement"); // 重新添加类以开始动画
+                    
                     };
                     img.src = newBgImageUrl; // 开始加载图片
                 }
@@ -114,7 +104,7 @@ require('./class/register.class.php');
 
             var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
             var deviceType = screenWidth < 768 ? "mobile" : "pc";
-            xhr.open("GET", "getRandomBgImage.php?deviceType=" + deviceType, true);
+            xhr.open("GET", "get_new_quote_with_bg.php?deviceType=" + deviceType, true);
             xhr.send();
         }
 
