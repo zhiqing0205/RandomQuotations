@@ -70,10 +70,6 @@ require('./class/register.class.php');
         .fadeInElement {
             animation: fadeIn 1s ease-in;
         }
-
-        .inner {
-            background: rgba(0, 0, 0, 0.3) !important;
-        }
     </style>
     <script>
 
