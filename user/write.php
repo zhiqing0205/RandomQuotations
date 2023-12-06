@@ -57,7 +57,7 @@
                                 <div class="col-sm-9">
                                     <!-- <input type="text" name="author" class="form-control" placeholder="输入的内容在15字以内"
                                            data-form-un="1483112471400.764"> -->
-                                        <input type="text" name="author" class="form-control" placeholder="输入的内容在15字以内???"
+                                        <input type="text" name="author" class="form-control" placeholder="输入的内容在15字以内"
                                            data-form-un="1483112471400.764" value="AMF" disabled>
                                 </div>
                                 <br/>
@@ -105,8 +105,8 @@
     $time = date('Y-m-d H:i:s');
     if (@$_POST['submit']) {
         $txt = $_POST['txt'];
-        $author = $_POST['author'];
-        $type = $_POST['type'];
+        $author = isset($_POST['author']) ? $_POST['author'] : 'AMF';
+        $type = isset($_POST['author']) ? $_POST['author'] : '1';
         $userid = $list['0']['id'];
         $share = $_POST['share'];
         if ($txt == true) {
