@@ -43,7 +43,7 @@ require('./class/register.class.php');
             align-items: center; /* 垂直居中 */
 
             /* transition: all 0.6s; */
-            transition: background-image 0.5s ease-in-out; /* 平滑过渡效果 */
+            transition: background-image 1s ease-in-out; /* 平滑过渡效果 */
         }
 
         #cta {
