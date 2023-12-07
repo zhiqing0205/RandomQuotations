@@ -76,8 +76,12 @@ if ($_POST['submit']) {
             <button type="submit" name="submit" value="登录" class="btn btn-primary block full-width m-b">登 录</button>
 
 
-            <p class="text-muted text-center"><a href="login.php?act=forget"><small>忘记密码了？</small></a> | <a
-                        href="register.php">注册一个新账号</a>
+            <!-- <p class="text-muted text-center"><a href="login.php?act=forget"><small>忘记密码了？</small></a>
+             | <a href="register.php">注册一个新账号</a>
+            </p> -->
+
+            <p class="text-muted text-center"><a href="login.php?act=forget"><small>忘记密码了？</small></a>
+             
             </p>
 
         </form>
