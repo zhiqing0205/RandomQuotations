@@ -78,7 +78,7 @@ require('./class/register.class.php');
         function loadNewQuote() {
             
             if(is_loading) return;
-            var quoteButton = document.querySelector(".quoteButton"); // 获取按钮元素
+            var quoteButton = document.querySelector("#quoteButton"); // 获取按钮元素
             quoteButton.innerHTML = "Loading..."
 
             var xhr = new XMLHttpRequest();
@@ -163,7 +163,7 @@ require('./class/register.class.php');
         <footer>
             <ul class="buttons vertical">
                 <li><?php 
-                        echo "<a id=\"quoteButton\" class=\"button fit scrolly quoteButton loading\" onclick=\"loadNewQuote()\">再来一条</a>";
+                        echo "<a id=\"quoteButton\" class=\"button fit scrolly\" onclick=\"loadNewQuote()\">再来一条</a>";
                     ?></li>
             </ul>
         </footer>
