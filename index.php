@@ -49,7 +49,7 @@ require('./class/register.class.php');
         #cta {
             background-attachment: scroll, scroll, scroll, fixed;
             background-color: #645862;
-            background-image: url("./resource/css/images/light-tl.svg"), url("./resource/css/images/light-tr.svg"), url("./resource/css/images/overlay.png"), url("./resource/img/banner-<?php echo rand(0,15);?>.jpg");
+            /* background-image: url("./resource/css/images/light-tl.svg"), url("./resource/css/images/light-tr.svg"), url("./resource/css/images/overlay.png"), url("./resource/img/banner-<?php echo rand(0,15);?>.jpg"); */
             background-position: top left, top right, top left, bottom center;
             background-repeat: no-repeat, no-repeat, repeat, no-repeat;
             background-size: 20em, 20em, auto, cover;
@@ -92,7 +92,9 @@ require('./class/register.class.php');
                     img.onload = function() {
                         // 当图片完全加载后更新背景
                         var bannerElement = document.getElementById("banner");
-                        bannerElement.style.backgroundImage = 'url("./resource/css/images/light-bl.svg"), url("./resource/css/images/light-br.svg"), url("./resource/css/images/overlay.png"), url("' + newBgImageUrl + '")';
+                        bannerElement.style.backgroundImage = 'url("' + newBgImageUrl + '")';
+                        bannerElement.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
+                        bannerElement.style.backgroundBlendMode = 'multiply';
                         // 更新语录
                         var quoteElement = document.getElementById("quote");
                         quoteElement.innerHTML = "“ " + newQuote + " ”";
