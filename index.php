@@ -73,13 +73,16 @@ require('./class/register.class.php');
     </style>
     <script>
 
-        var is_loading = false
+        var is_loading = false;
+        var last_quote = '';
+        var last_bg = '';
 
         function loadNewQuote() {
-            
-            if(is_loading) return;
+            if (is_loading) return;
+            is_loading = true;
             var quoteButton = document.querySelector("#quoteButton"); // 获取按钮元素
-            quoteButton.innerHTML = "Loading..."
+            quoteButton.innerHTML = "Loading...";
+            console.log(last_quote, last_bg)
 
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
@@ -87,6 +90,17 @@ require('./class/register.class.php');
                     var response = JSON.parse(this.responseText);
                     var newQuote = response.quote;
                     var newBgImageUrl = response.backgroundImage;
+
+                    // 检查语录和背景图是否与上次相同
+                    if (newQuote === last_quote || newBgImageUrl === last_bg) {
+                        is_loading = false;
+                        loadNewQuote(); // 如果相同，重新加载
+                        return;
+                    }
+
+                    last_quote = newQuote; // 更新 last_quote
+                    last_bg = newBgImageUrl; // 更新 last_bg
+
                     // 预加载新的背景图
                     var img = new Image();
                     img.onload = function() {
@@ -105,7 +119,7 @@ require('./class/register.class.php');
                         quoteButton.innerHTML = "再来一条"
                         is_loading = false
                     };
-                    img.src = newBgImageUrl; // 开始加载图片                 
+                    img.src = newBgImageUrl; // 开始加载图片
                 }
             };
 
@@ -114,6 +128,7 @@ require('./class/register.class.php');
             xhr.open("GET", "get_new_quote_with_bg.php?deviceType=" + deviceType, true);
             xhr.send();
         }
+
 
         // 防止元素未完全加载
         setTimeout(() => {
