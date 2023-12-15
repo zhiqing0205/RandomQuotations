@@ -82,7 +82,6 @@ require('./class/register.class.php');
             is_loading = true;
             var quoteButton = document.querySelector("#quoteButton"); // 获取按钮元素
             quoteButton.innerHTML = "Loading...";
-            console.log(last_quote, last_bg)
 
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
@@ -90,6 +89,7 @@ require('./class/register.class.php');
                     var response = JSON.parse(this.responseText);
                     var newQuote = response.quote;
                     var newBgImageUrl = response.backgroundImage;
+                    var isNew = response.is_new;
 
                     // 检查语录和背景图是否与上次相同
                     if (newQuote === last_quote || newBgImageUrl === last_bg) {
@@ -104,17 +104,37 @@ require('./class/register.class.php');
                     // 预加载新的背景图
                     var img = new Image();
                     img.onload = function() {
-                        // 当图片完全加载后更新背景
+                        // 更新背景
                         var bannerElement = document.getElementById("banner");
                         bannerElement.style.backgroundImage = 'url("' + newBgImageUrl + '")';
                         bannerElement.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
                         bannerElement.style.backgroundBlendMode = 'multiply';
+
                         // 更新语录
                         var quoteElement = document.getElementById("quote");
                         quoteElement.innerHTML = "“ " + newQuote + " ”";
+
+                        // 添加或移除 'new' 标记
+                        var newBadge = document.getElementById("newBadge");
+                        if (isNew) {
+                            if (!newBadge) {
+                                newBadge = document.createElement("img");
+                                newBadge.id = "newBadge";
+                                newBadge.src = "./resource/img/new.png";
+                                newBadge.style.width = "32px"; 
+                                quoteElement.appendChild(newBadge);
+                            }
+                        } else {
+                            if (newBadge) {
+                                quoteElement.removeChild(newBadge);
+                            }
+                        }
+
+                        // 动画处理
                         quoteElement.classList.remove("fadeInElement"); // 移除类以重置动画
                         void quoteElement.offsetWidth; // 触发重绘
                         quoteElement.classList.add("fadeInElement"); // 重新添加类以开始动画
+
                         // 加载完成 去除loading
                         quoteButton.innerHTML = "再来一条"
                         is_loading = false
